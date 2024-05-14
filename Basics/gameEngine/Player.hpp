@@ -12,15 +12,16 @@ class Player : public Shape
 {
 public:
 	Player(float posX, float posY, float posZ, bool npc, string name) : Shape(posX, posY, posZ), mNpc(npc), mName(name) {}
-	string type() { return "Player"; };
-	
+	string type() { return "Player"; }
+	string getname() const { return mName; }
+	void move();
 
 
 
 private:
 	
 	bool mNpc;	//0= Player; 1= NPC
-	string mName
+	string mName;
 
 
 };

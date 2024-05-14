@@ -1,8 +1,8 @@
-// Vector3.h
-#ifndef VECTOR3_H
-#define VECTOR3_H
+// Collider.h
+#ifndef COLLIDER_H
+#define COLLIDER_H
 #include <iostream>
-class Vector3
+class Collider
 {
 public:
 	Vector3();
@@ -39,4 +39,4 @@ std::istream& operator>>(std::istream& is, Vector3& v);
 std::ostream& operator<<(std::ostream& os, const Vector3& v);
 
 
-#endif // VECTOR3_H
+#endif // COLLIDER_H

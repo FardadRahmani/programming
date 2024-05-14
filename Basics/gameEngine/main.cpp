@@ -19,12 +19,12 @@ enum Menu {
 
 };
 
-
+ int Shape::shapeCounter{};
 int main() {
     
     vector<shared_ptr<Shape>> shapes{};
     bool startEngine;
-    Menu menuSelect;
+    Menu menuSelect{};
 
     cout << "Start up engine? 0: No, 1: Yes" << endl;
     cin >> startEngine;
@@ -35,22 +35,26 @@ int main() {
         int selection{ Menu::SaveAll };
         cin >> selection;
 
-        switch (menuSelect)
+        switch (selection)
         {
-        case 1:
+        case static_cast<int>(Menu::AddShape):
+        {
             cout << "Add:" << endl;
             cout << "1:Cube   2:Sphere   3: Light   4: Player Character" << endl;
             int objSelection;
             cin >> objSelection;
-            if (objSelection == 1) 
-            { 
+            if (objSelection == 1)
+            {
                 cout << "Please enter the Size of the Cube:" << endl;
                 float w, l, h;
                 cout << "width="; cin >> w;
                 cout << "length="; cin >> l;
                 cout << "height="; cin >> h;
                 shapes.push_back(make_shared<Cube>(0, 0, 0, w, l, h));
-                                
+                shapes[Shape::shapeCounter - 1]->printPos();
+                shapes[Shape::shapeCounter - 1]->inputPos();
+                
+
             }
             else if (objSelection == 2)
             {
@@ -59,18 +63,23 @@ int main() {
                 cout << "Radius="; cin >> r;
                 shapes.push_back(make_shared<Sphere>(0, 0, 0, r));
             }
-            else if (objSelection == 4) 
+            else if (objSelection == 4)
             {
                 bool npc; string name;
-                cout << "0: Playable Character   1: NPC" << endl;                
+                cout << "0: Playable Character   1: NPC" << endl;
                 cin >> npc;
                 cout << "Name=" << endl; cin >> name;
                 shapes.push_back(make_shared<Player>(0, 0, 0, npc, name));
             }
             break;
-        }
+        }//case1
+        case static_cast<int>(Menu::DisplayShapes):
+            for (const auto& shape : shapes)
+                cout << shape << " ";
 
-    }
+        }//Switch
+
+    }//Engine-While
 
     return 0;
-}
+}//main
